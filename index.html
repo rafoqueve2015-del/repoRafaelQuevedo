@@ -1,256 +1,551 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafael Quevedo Mogollon - Portafolio Profesional</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Rafael Quevedo Mogollón - Portafolio Profesional</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#080c14',
+                            card: '#111827',
+                            border: '#1f2937',
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 4s infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 25px -5px rgba(56, 189, 248, 0.3)' },
+                            '100%': { boxShadow: '0 0 45px 10px rgba(14, 165, 233, 0.5)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-color: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-color: #38bdf8;
-            --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
-            --border-color: #334155;
+        /* Modern backdrop blur & glow effects */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 12px 30px -10px rgba(14, 165, 233, 0.15);
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        header {
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.9)), url('pefil.png') no-repeat center center/cover;
-            padding: 4rem 2rem 3rem 2rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .profile-container {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-color);
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-        }
-
-        h1 span {
-            background: var(--accent-gradient);
+        .hero-gradient-text {
+            background: linear-gradient(135deg, #ffffff 20%, #38bdf8 60%, #818cf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .tagline {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 600px;
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
         }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
 
-        section {
-            margin-bottom: 3.5rem;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--accent-color);
+        ::-webkit-scrollbar-track {
+            background: #080c14;
         }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
         }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.75rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-        }
-
-        .card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-            color: var(--text-color);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-gradient);
-            color: #ffffff;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: opacity 0.2s;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .contact-section {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 2.5rem;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            color: var(--text-color);
-            font-size: 1.5rem;
-            background-color: var(--bg-color);
-            padding: 0.75rem;
-            border-radius: 50%;
-            border: 1px solid var(--border-color);
-            transition: color 0.2s, border-color 0.2s;
-            text-decoration: none;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
         }
     </style>
 </head>
-<body>
+<body class="bg-dark-bg text-slate-100 font-sans min-h-screen relative overflow-x-hidden antialiased">
 
-    <header>
-        <div class="profile-container">
-            <img src="pefil.png" alt="Rafael Quevedo Mogollón" class="profile-img">
-            <h1>Hola, soy <span>Rafael Quevedo Mogollón</span></h1>
-            <p class="tagline">Docente de Ingeniería de Software y Tecnologías de la Información | Desarrollador de Soluciones Cloud, IoT y Automatización a Medida.</p>
+    <!-- Background Glow Elements -->
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-brand-500/10 blur-[120px] pointer-events-none rounded-full -z-10"></div>
+    <div class="fixed bottom-10 right-0 w-96 h-96 bg-indigo-500/10 blur-[140px] pointer-events-none rounded-full -z-10"></div>
+    
+    <!-- Grid Overlay -->
+    <div class="fixed inset-0 bg-grid-pattern pointer-events-none -z-10 opacity-60"></div>
+
+    <!-- Navigation Header -->
+    <nav class="sticky top-0 z-50 backdrop-blur-md bg-dark-bg/80 border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand / Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-500 to-indigo-600 flex items-center justify-center font-bold text-white shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                        RQ
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-base tracking-tight text-white group-hover:text-brand-400 transition-colors">Rafael Quevedo</span>
+                        <span class="text-[10px] text-slate-400 font-mono tracking-wider">DETECPRO TECH</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#especialidades" class="hover:text-brand-400 transition-colors">Especialidades</a>
+                    <a href="#proyectos" class="hover:text-brand-400 transition-colors">Proyectos</a>
+                    <a href="#experiencia" class="hover:text-brand-400 transition-colors">Perfil</a>
+                    <a href="#contacto" class="hover:text-brand-400 transition-colors">Contacto</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/51908539454?text=Hola%20Rafael,%20quisiera%20cotizar%20un%20proyecto%20de%20software/IoT" 
+                       target="_blank" 
+                       class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20 hover:brightness-110 active:scale-95 transition-all">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span class="hidden sm:inline">Cotizar Proyecto</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-12 pb-20 md:pt-20 md:pb-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
+                
+                <!-- Profile Image Avatar with Halo Glow -->
+                <div class="relative group">
+                    <!-- Glow Halo Behind -->
+                    <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-brand-400 via-indigo-500 to-emerald-400 blur-lg opacity-70 group-hover:opacity-100 transition duration-500 animate-pulse-glow"></div>
+                    
+                    <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-full p-1 bg-dark-bg">
+                        <img src="pefil.png" 
+                             alt="Rafael Quevedo Mogollón" 
+                             onerror="this.src='https://placehold.co/400x400/1e293b/38bdf8?text=Rafael+Quevedo'"
+                             class="w-full h-full object-cover rounded-full shadow-2xl border-2 border-brand-400/30">
+                    </div>
+
+                    <!-- Online Status Badge -->
+                    <div class="absolute bottom-2 right-2 bg-dark-bg/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-700 flex items-center gap-2 shadow-lg">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                        <span class="text-[11px] font-mono text-slate-300">Disponible</span>
+                    </div>
+                </div>
+
+                <!-- Hero Text Info -->
+                <div class="flex-1 text-center md:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/80 text-brand-400 text-xs font-mono mb-4">
+                        <i class="fas fa-code-branch"></i> Docente TI & Consultor Tecnológico
+                    </div>
+                    
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 leading-tight">
+                        Hola, soy <br class="hidden sm:inline">
+                        <span class="hero-gradient-text">Rafael Quevedo</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-400 max-w-2xl mb-8 font-normal leading-relaxed">
+                        Ingeniero de Software y Docente Universitario. Especializado en arquitectura de soluciones <span class="text-slate-200 font-medium">Cloud</span>, sistemas <span class="text-slate-200 font-medium">IoT</span>, automatización industrial/comercial y desarrollo <span class="text-slate-200 font-medium">Full-Stack</span> a medida.
+                    </p>
+
+                    <!-- CTAs & Social Bar -->
+                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4">
+                        <a href="https://wa.me/51908539454?text=Hola%20Rafael,%20quisiera%20solicitar%20informaci%C3%B3n" 
+                           target="_blank"
+                           class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white font-semibold text-sm shadow-xl shadow-brand-500/20 hover:shadow-brand-500/35 transition-all flex items-center gap-2">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                            Contactar por WhatsApp
+                        </a>
+
+                        <a href="https://linkedin.com/in/rafael-quevedo-mogoll%C3%B3n" 
+                           target="_blank"
+                           class="px-6 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 border border-slate-700 text-slate-200 font-semibold text-sm transition-all flex items-center gap-2">
+                            <i class="fab fa-linkedin text-blue-400 text-lg"></i>
+                            Perfil LinkedIn
+                        </a>
+                    </div>
+
+                    <!-- Social Icons Strip -->
+                    <div class="mt-8 flex items-center justify-center md:justify-start gap-3">
+                        <span class="text-xs font-mono text-slate-500 mr-2">REDES:</span>
+                        
+                        <a href="https://www.youtube.com/@rafaelquevedo4412" target="_blank" title="YouTube Channel"
+                           class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-400 hover:text-red-400 hover:border-red-500/50 hover:bg-slate-800 transition-all">
+                            <i class="fab fa-youtube text-base"></i>
+                        </a>
+
+                        <a href="https://linkedin.com/in/rafael-quevedo-mogoll%C3%B3n" target="_blank" title="LinkedIn Profile"
+                           class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/50 hover:bg-slate-800 transition-all">
+                            <i class="fab fa-linkedin-in text-base"></i>
+                        </a>
+
+                        <a href="https://github.com/rafoqueve2015-del" target="_blank" title="GitHub Repositories"
+                           class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-500 hover:bg-slate-800 transition-all">
+                            <i class="fab fa-github text-base"></i>
+                        </a>
+
+                        <a href="https://wa.me/51908539454" target="_blank" title="WhatsApp Business"
+                           class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-400 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-slate-800 transition-all">
+                            <i class="fab fa-whatsapp text-base"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-        <!-- Servicios / Competencias -->
-        <section>
-            <h2><i class="fas fa-laptop-code"></i> Áreas de Especialización</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Desarrollo Web y Móvil</h3>
-                    <p>Creación de aplicaciones multiplataforma escalables integradas con arquitecturas modernas y Firebase.</p>
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20 pb-20">
+
+        <!-- Metrics / Highlights Banner -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-brand-400 font-mono mb-1">+8 Años</div>
+                <div class="text-xs text-slate-400">Experiencia en Software & TI</div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-indigo-400 font-mono mb-1">Docencia</div>
+                <div class="text-xs text-slate-400">Capacitación Superior</div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono mb-1">IoT & Cloud</div>
+                <div class="text-xs text-slate-400">Soluciones Integradas</div>
+            </div>
+            <div class="glass-card p-5 rounded-2xl text-center">
+                <div class="text-2xl sm:text-3xl font-extrabold text-purple-400 font-mono mb-1">Detecpro</div>
+                <div class="text-xs text-slate-400">Innovación Tecnológica</div>
+            </div>
+        </section>
+
+        <!-- Áreas de Especialización -->
+        <section id="especialidades" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-xs font-mono text-brand-400 tracking-wider uppercase font-semibold">Competencias Clave</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">Áreas de Especialización</h2>
                 </div>
-                <div class="card">
-                    <h3>Sistemas a Medida</h3>
-                    <p>Ingeniería de software orientada a la gestión comercial, inventarios, facturación y control logístico.</p>
+                <p class="text-sm text-slate-400 max-w-md mt-2 md:mt-0">
+                    Servicios de alta complejidad técnica adaptados a las necesidades del mercado moderno.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="glass-card p-6 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-brand-400 transition-colors">Desarrollo Web & Móvil</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Aplicaciones multiplataforma de alto rendimiento, interfaces responsivas y sistemas progresivos integrados con backend en tiempo real.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">React / Vue</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Node.js</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Firebase</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Cloud Computing & Arquitectura</h3>
-                    <p>Diseño de microservicios, APIs REST y despliegues robustos en la nube utilizando Google Cloud y AWS.</p>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-cubes"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-indigo-400 transition-colors">Sistemas a Medida</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Ingeniería de software adaptada a procesos corporativos: facturación electrónica, gestión de inventarios, CRM y control logístico.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">ERP / CRM</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">APIs REST</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">SQL Server</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Automatización e IoT</h3>
-                    <p>Integración de hardware embebido, telemetría de sensores, microcontroladores y flujos automatizados.</p>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-sky-400 transition-colors">Cloud Architecture & DevOps</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Diseño e implementación de infraestructura escalable en la nube, microservicios, seguridad en servidores y despliegues continuos.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">AWS</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Google Cloud</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Docker</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-6 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">Automatización e IoT</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Integración de hardware embebido (ESP32/Arduino), telemetría remota, captura de sensores e interactividad máquina a nube.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">ESP32</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">MQTT</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Telemetría</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-card p-6 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Docencia & Capacitación TI</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Formación académica superior en ingeniería de software, arquitectura web, bases de datos y desarrollo de proyectos prácticos.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Universidad</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Mentoría</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Talleres</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-card p-6 rounded-2xl transition-all duration-300 group flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-5 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">Bots & Asistentes Virtuales</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">
+                            Automatización de canales de atención mediante bots interactivos de WhatsApp y flujos de trabajo inteligentes para empresas.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 pt-2 border-t border-slate-800/80">
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">WhatsApp API</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Webhooks</span>
+                        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Detecpro Bot</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Proyectos & Canales Destacados -->
+        <section id="proyectos" class="scroll-mt-24">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-xs font-mono text-brand-400 tracking-wider uppercase font-semibold">Iniciativas & Contenido</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white mt-1">Proyectos & Canales Destacados</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- YouTube Featured Box -->
+                <div class="glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-red-500/10 rounded-full blur-2xl group-hover:bg-red-500/20 transition-all pointer-events-none"></div>
+                    
+                    <div class="flex items-center gap-3 text-red-400 text-xs font-mono mb-4">
+                        <i class="fab fa-youtube text-lg"></i> CANAL EDUCATIVO
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Canal Oficial de YouTube</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Videotutoriales, demostraciones prácticas de proyectos de robótica, integración de sistemas IoT y desarrollo de soluciones de software en vivo.
+                    </p>
+
+                    <div class="bg-dark-bg/60 rounded-2xl p-4 border border-slate-800 mb-6 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-red-600/20 text-red-500 flex items-center justify-center font-bold">
+                                <i class="fas fa-play text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-white">@rafaelquevedo4412</div>
+                                <div class="text-[11px] text-slate-400">Contenido técnico & tutoriales</div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">Suscribirse</span>
+                    </div>
+
+                    <a href="https://www.youtube.com/@rafaelquevedo4412" 
+                       target="_blank" 
+                       class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold text-sm transition-all shadow-lg shadow-red-600/20">
+                        <i class="fab fa-youtube"></i>
+                        Ver Canal de YouTube
+                        <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Bot Detecpro Featured Box -->
+                <div class="glass-card p-6 sm:p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all pointer-events-none"></div>
+
+                    <div class="flex items-center gap-3 text-emerald-400 text-xs font-mono mb-4">
+                        <i class="fab fa-whatsapp text-lg"></i> AUTOMATIZACIÓN COMERCIAL
+                    </div>
+
+                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Asistente Bot Detecpro</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Experimenta la interacción en tiempo real con nuestro bot automatizado en WhatsApp diseñado para atención al cliente y consultas directas.
+                    </p>
+
+                    <div class="bg-dark-bg/60 rounded-2xl p-4 border border-slate-800 mb-6 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-600/20 text-emerald-400 flex items-center justify-center font-bold">
+                                <i class="fas fa-robot text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs font-bold text-white">+51 908 539 454</div>
+                                <div class="text-[11px] text-slate-400">Atención automatizada 24/7</div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Demo Activa</span>
+                    </div>
+
+                    <a href="https://wa.me/51908539454?text=Hola,%20quisiera%20probar%20el%20asistente%20bot%20Detecpro" 
+                       target="_blank" 
+                       class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm transition-all shadow-lg shadow-emerald-600/20">
+                        <i class="fab fa-whatsapp"></i>
+                        Chatear con el Bot
+                        <i class="fas fa-arrow-right text-xs ml-1"></i>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contacto Directo / Cotización -->
+        <section id="contacto" class="scroll-mt-24">
+            <div class="glass-card p-8 sm:p-12 rounded-3xl border border-slate-800 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-80 h-80 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-mono text-brand-400 tracking-wider uppercase font-semibold">¿Tienes una idea o proyecto?</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Hablemos y Trabajemos Juntos</h2>
+                    <p class="text-slate-400 text-sm sm:text-base mt-3">
+                        Ya sea para asesoría técnica universitaria, desarrollo de software personalizado o integración de proyectos IoT.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                    
+                    <!-- WhatsApp Contact Card -->
+                    <a href="https://wa.me/51908539454?text=Hola%20Rafael,%20quisiera%20cotizar%20un%20proyecto" 
+                       target="_blank"
+                       class="bg-dark-bg/80 hover:bg-slate-800/80 border border-slate-800 hover:border-emerald-500/50 p-6 rounded-2xl text-center transition-all group">
+                        <div class="w-12 h-12 mx-auto rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="text-sm font-bold text-white mb-1">WhatsApp Directo</div>
+                        <div class="text-xs text-slate-400 font-mono mb-2">+51 908 539 454</div>
+                        <span class="text-[11px] font-semibold text-emerald-400 group-hover:underline">Cotizar proyecto &rarr;</span>
+                    </a>
+
+                    <!-- LinkedIn Contact Card -->
+                    <a href="https://linkedin.com/in/rafael-quevedo-mogoll%C3%B3n" 
+                       target="_blank"
+                       class="bg-dark-bg/80 hover:bg-slate-800/80 border border-slate-800 hover:border-sky-500/50 p-6 rounded-2xl text-center transition-all group">
+                        <div class="w-12 h-12 mx-auto rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fab fa-linkedin-in"></i>
+                        </div>
+                        <div class="text-sm font-bold text-white mb-1">LinkedIn</div>
+                        <div class="text-xs text-slate-400 mb-2">Conectar Profesionalmente</div>
+                        <span class="text-[11px] font-semibold text-sky-400 group-hover:underline">Ver Perfil &rarr;</span>
+                    </a>
+
+                    <!-- YouTube Contact Card -->
+                    <a href="https://www.youtube.com/@rafaelquevedo4412" 
+                       target="_blank"
+                       class="bg-dark-bg/80 hover:bg-slate-800/80 border border-slate-800 hover:border-red-500/50 p-6 rounded-2xl text-center transition-all group">
+                        <div class="w-12 h-12 mx-auto rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition-transform">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="text-sm font-bold text-white mb-1">YouTube</div>
+                        <div class="text-xs text-slate-400 mb-2">Contenido Educativo</div>
+                        <span class="text-[11px] font-semibold text-red-400 group-hover:underline">Explorar Videos &rarr;</span>
+                    </a>
+
                 </div>
             </div>
         </section>
 
-        <!-- Proyectos y Canales -->
-        <section>
-            <h2><i class="fas fa-rocket"></i> Canales y Proyectos</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Canal de YouTube</h3>
-                    <p>Explora videotutoriales, demostraciones de proyectos de robótica, IoT y desarrollo de software.</p>
-                    <a href="https://www.youtube.com/@rafaelquevedo4412" target="_blank" class="btn"><i class="fab fa-youtube"></i> Ver Canal</a>
-                </div>
-                <div class="card">
-                    <h3>Asistente Bot Detecpro</h3>
-                    <p>Prueba la automatización comercial inteligente en WhatsApp comunicándote con nuestro asistente virtual.</p>
-                    <a href="https://wa.me/51908539454" target="_blank" class="btn"><i class="fab fa-whatsapp"></i> Chatear con el Bot</a>
-                </div>
-            </div>
-        </section>
+    </main>
 
-        <!-- Contacto -->
-        <section class="contact-section">
-            <h2>Hablemos de tu Proyecto</h2>
-            <p class="tagline" style="margin: 0 auto 1.5rem auto;">¿Tienes una idea en mente o necesitas asesoría técnica especializada? Conéctate conmigo a través de mis plataformas.</p>
-            <div class="social-links">
-                <a href="https://www.youtube.com/@rafaelquevedo4412" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="https://wa.me/51908539454" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://github.com/rafoqueve2015-del" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-dark-bg py-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-center sm:text-left">
+                <div class="text-sm font-bold text-slate-200">Rafael Quevedo Mogollón</div>
+                <div class="text-xs text-slate-500 mt-0.5">&copy; 2026 Todos los derechos reservados. Detecpro.</div>
             </div>
-        </section>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 Rafael Quevedo Mogollón. Todos los derechos reservados. Detecpro.</p>
-    </body>
+            <div class="flex items-center gap-4 text-slate-400 text-sm">
+                <a href="https://github.com/rafoqueve2015-del" target="_blank" class="hover:text-white transition-colors" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/rafael-quevedo-mogoll%C3%B3n" target="_blank" class="hover:text-sky-400 transition-colors" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.youtube.com/@rafaelquevedo4412" target="_blank" class="hover:text-red-400 transition-colors" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://wa.me/51908539454" target="_blank" class="hover:text-emerald-400 transition-colors" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>
