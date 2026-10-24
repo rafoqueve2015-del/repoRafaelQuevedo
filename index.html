@@ -1,12 +1,721 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detecpro - Soluciones TI</title>
+    <title>Rafael Quevedo Mogollón | Detecpro - Soluciones Tecnológicas & Desarrollo de Software</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                            accent: '#06b6d4',
+                            glow: '#00f2fe'
+                        },
+                        darkbg: {
+                            900: '#0a0f1d',
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0f1d;
+            color: #f3f4f6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(14, 165, 233, 0.4);
+        }
+        .glow-effect-lg {
+            box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.3);
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-nav {
+            background: rgba(10, 15, 29, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0f1d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0ea5e9;
+        }
+    </style>
 </head>
-<body>
-    <h1>Detecpro - Desarrollo técnico de proyectos con TI</h1>
-    <p>Servicios profesionales de tecnología y desarrollo de software.</p>
+<body class="antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- LOGO -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        <div class="w-full h-full bg-darkbg-900 rounded-[10px] flex items-center justify-center">
+                            <i class="fa-solid fa-code text-brand-400 font-bold text-lg"></i>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold tracking-tight text-white font-heading">DETECPRO</span>
+                        <span class="text-xs text-brand-400 tracking-widest font-medium uppercase -mt-1">Rafael Quevedo</span>
+                    </div>
+                </a>
+
+                <!-- DESKTOP NAV -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Inicio</a>
+                    <a href="#servicios" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Servicios</a>
+                    <a href="#proyectos" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Proyectos & YouTube</a>
+                    <a href="#experiencia" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Perfil</a>
+                    <a href="#contacto" class="text-sm font-medium text-gray-300 hover:text-brand-400 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- BOTÓN HEADER -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://wa.me/51908539454?text=Hola,%20vi%20tu%20p%C3%A1gina%20web%20de%20Detecpro%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n" 
+                       target="_blank" 
+                       class="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium rounded-xl group bg-gradient-to-br from-brand-400 to-brand-600 group-hover:from-brand-400 group-hover:to-brand-accent hover:text-white text-white shadow-lg glow-effect transition-all duration-300">
+                        <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-darkbg-900 rounded-[10px] group-hover:bg-opacity-0 flex items-center space-x-2">
+                            <i class="fa-brands fa-whatsapp text-lg text-emerald-400 group-hover:text-white"></i>
+                            <span>Chat con el Bot</span>
+                        </span>
+                    </a>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU DROPDOWN -->
+        <div id="mobile-menu" class="hidden md:hidden bg-darkbg-800 border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 text-base font-medium text-gray-300 hover:text-brand-400">Inicio</a>
+            <a href="#servicios" class="block py-2 text-base font-medium text-gray-300 hover:text-brand-400">Servicios</a>
+            <a href="#proyectos" class="block py-2 text-base font-medium text-gray-300 hover:text-brand-400">Proyectos & YouTube</a>
+            <a href="#experiencia" class="block py-2 text-base font-medium text-gray-300 hover:text-brand-400">Perfil</a>
+            <a href="#contacto" class="block py-2 text-base font-medium text-gray-300 hover:text-brand-400">Contacto</a>
+            <div class="pt-2">
+                <a href="https://wa.me/51908539454?text=Hola,%20vi%20tu%20p%C3%A1gina%20web%20de%20Detecpro%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n" 
+                   target="_blank" 
+                   class="w-full flex items-center justify-center space-x-2 py-3 bg-brand-600 hover:bg-brand-500 text-white font-semibold rounded-xl transition">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Contactar por WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+        <!-- Ambient Light Effect -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[350px] h-[350px] bg-brand-accent/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- TEXT COL -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full border border-brand-500/30 bg-brand-500/10 text-brand-400 text-xs sm:text-sm font-medium">
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Ingeniería de Software & Soluciones TI</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Transformamos Ideas en <br class="hidden sm:inline"/>
+                        <span class="gradient-text">Software Escalable e IoT</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Hola, soy <strong class="text-white font-semibold">Rafael Quevedo Mogollón</strong>, fundador de <strong class="text-brand-400">Detecpro</strong> e instructor especializado. Diseñamos e implementamos arquitecturas Cloud, desarrollo móvil/web, automatización comercial e IoT.
+                    </p>
+
+                    <!-- CTAS -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#servicios" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white font-semibold rounded-xl shadow-lg glow-effect transition transform hover:-translate-y-0.5 text-center flex items-center justify-center space-x-2">
+                            <span>Explorar Servicios</span>
+                            <i class="fa-solid fa-arrow-down-long text-sm"></i>
+                        </a>
+
+                        <a href="https://wa.me/51908539454?text=Hola,%20vi%20tu%20p%C3%A1gina%20web%20de%20Detecpro%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n" 
+                           target="_blank" 
+                           class="w-full sm:w-auto px-8 py-4 glass-card border-gray-700 hover:border-brand-500/50 text-gray-200 hover:text-white font-semibold rounded-xl transition text-center flex items-center justify-center space-x-3">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                            <span>Chat Directo (+51 908 539 454)</span>
+                        </a>
+                    </div>
+
+                    <!-- STATS / TECH BADGES -->
+                    <div class="pt-8 border-t border-gray-800/80 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-white font-heading">100%</span>
+                            <span class="text-xs text-gray-400">Cloud Serverless</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-white font-heading">24/7</span>
+                            <span class="text-xs text-gray-400">Automatización</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-white font-heading">Multi</span>
+                            <span class="text-xs text-gray-400">Plataforma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD PROFILE / TECH STACK VISUAL -->
+                <div class="lg:col-span-5 relative">
+                    <div class="glass-card rounded-3xl p-6 sm:p-8 relative z-10 border border-gray-700/60 shadow-2xl glow-effect-lg">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-500 to-brand-accent p-0.5 flex-shrink-0">
+                                <div class="w-full h-full bg-darkbg-800 rounded-[14px] flex items-center justify-center overflow-hidden">
+                                    <i class="fa-solid fa-user-gear text-2xl text-brand-400"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-white">Rafael Quevedo Mogollón</h3>
+                                <p class="text-xs text-brand-400 font-medium">Lead Developer & Consultant</p>
+                                <div class="flex items-center space-x-2 mt-1 text-xs text-gray-400">
+                                    <i class="fa-solid fa-location-dot text-red-400"></i>
+                                    <span>Perú | SENATI / AWS Academy</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- LIVE BOT INTERACTION CARD -->
+                        <div class="bg-darkbg-900/90 rounded-2xl p-4 border border-gray-800 space-y-3 mb-6">
+                            <div class="flex items-center justify-between text-xs text-gray-400 border-b border-gray-800 pb-2">
+                                <span class="flex items-center space-x-1.5">
+                                    <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                                    <span class="font-medium text-gray-300">Asistente Virtual Detecpro</span>
+                                </span>
+                                <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-mono">ONLINE</span>
+                            </div>
+                            <div class="text-xs text-gray-300 space-y-2">
+                                <p class="bg-darkbg-800 p-2.5 rounded-xl border border-gray-800">
+                                    👋 <span class="text-brand-300 font-medium">¡Hola!</span> Puedes escribirnos al número de WhatsApp o elegir las opciones en nuestro menú interactivo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- STACK BADGES -->
+                        <div class="space-y-2">
+                            <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Especialidades Técnicas:</span>
+                            <div class="flex flex-wrap gap-2 pt-1">
+                                <span class="px-2.5 py-1 rounded-lg bg-gray-800/80 border border-gray-700 text-xs text-gray-300">Firebase Cloud</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-gray-800/80 border border-gray-700 text-xs text-gray-300">Google Cloud Platform</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-gray-800/80 border border-gray-700 text-xs text-gray-300">Node.js & Express</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-gray-800/80 border border-gray-700 text-xs text-gray-300">Flutter / Mobile</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-gray-800/80 border border-gray-700 text-xs text-gray-300">IoT & Telemetría</span>
+                                <span class="px-2.5 py-1 rounded-lg bg-gray-800/80 border border-gray-700 text-xs text-gray-300">Node-RED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS INTEGRADOS AL BOT -->
+    <section id="servicios" class="py-20 bg-darkbg-800/50 relative border-t border-b border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>Catálogo de Servicios Integrado</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Portafolio Comercial <span class="gradient-text">Detecpro</span>
+                </h2>
+                <p class="text-gray-400 text-sm sm:text-base">
+                    Estructurado de acuerdo con las opciones de consulta interactiva de nuestro bot de WhatsApp oficial.
+                </p>
+            </div>
+
+            <!-- GRID DE SERVICIOS -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- OPCIÓN 1 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-darkbg-900 border border-gray-800 text-brand-400 font-bold">Opción 1</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors">Desarrollo de Apps Web y Móviles</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Creación e ingeniería de aplicaciones multiplataforma (Android, iOS y Web PWA). Integración con bases de datos en tiempo real, arquitectura limpia y experiencia de usuario optimizada.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Flutter & React Native Frameworks</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Backends Serverless con Firebase</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>UI/UX Moderna y Responsiva</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/51908539454?text=Hola,%20me%20interesa%20la%20opci%C3%B3n%201:%20Desarrollo%20de%20Apps%20Web%20y%20M%C3%B3viles" 
+                       target="_blank" 
+                       class="w-full py-2.5 px-4 rounded-xl bg-darkbg-900 border border-gray-700 hover:border-brand-500 text-xs font-semibold text-gray-200 hover:text-white transition flex items-center justify-center space-x-2">
+                        <span>Consultar por WhatsApp</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- OPCIÓN 2 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-darkbg-900 border border-gray-800 text-brand-400 font-bold">Opción 2</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors">Sistemas a Medida</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Soluciones comerciales personalizadas para gestión de inventarios, facturación electrónica (SUNAT/ERP), sistemas logísticos y dashboards analíticos para empresas.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Facturación Electrónica & Inventarios</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Paneles de Control en Tiempo Real</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Automatización de Procesos Internos</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/51908539454?text=Hola,%20me%20interesa%20la%20opci%C3%B3n%202:%20Sistemas%20a%20Medida" 
+                       target="_blank" 
+                       class="w-full py-2.5 px-4 rounded-xl bg-darkbg-900 border border-gray-700 hover:border-brand-500 text-xs font-semibold text-gray-200 hover:text-white transition flex items-center justify-center space-x-2">
+                        <span>Consultar por WhatsApp</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- OPCIÓN 3 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-cloud"></i>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-darkbg-900 border border-gray-800 text-brand-400 font-bold">Opción 3</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors">Cloud Computing & Arquitectura</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Diseño y despliegue de infraestructura Serverless en Google Cloud (Cloud Run, Cloud Functions) y AWS. Desarrollo de APIs REST escalables, seguros y eficientes.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>GCP Cloud Functions / Cloud Run</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>APIs REST & Integración Webhooks</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Bases de datos SQL & NoSQL</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/51908539454?text=Hola,%20me%20interesa%20la%20opci%C3%B3n%203:%20Cloud%20Computing" 
+                       target="_blank" 
+                       class="w-full py-2.5 px-4 rounded-xl bg-darkbg-900 border border-gray-700 hover:border-brand-500 text-xs font-semibold text-gray-200 hover:text-white transition flex items-center justify-center space-x-2">
+                        <span>Consultar por WhatsApp</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- OPCIÓN 4 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-darkbg-900 border border-gray-800 text-brand-400 font-bold">Opción 4</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors">Automatización e IoT</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Integración de hardware embebido (Arduino, ESP32, Raspberry Pi), telemetría de sensores industriales, Node-RED y automatización de flujos de datos.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Telemetría de Sensores en Tiempo Real</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Orquestación de Datos con Node-RED</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Controladores Embebidos e Industria</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/51908539454?text=Hola,%20me%20interesa%20la%20opci%C3%B3n%204:%20Automatizaci%C3%B3n%20e%20IoT" 
+                       target="_blank" 
+                       class="w-full py-2.5 px-4 rounded-xl bg-darkbg-900 border border-gray-700 hover:border-brand-500 text-xs font-semibold text-gray-200 hover:text-white transition flex items-center justify-center space-x-2">
+                        <span>Consultar por WhatsApp</span>
+                        <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- OPCIÓN 5 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-red-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-brands fa-youtube"></i>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-darkbg-900 border border-gray-800 text-brand-400 font-bold">Opción 5</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors">Canal de YouTube & Tutoriales</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Aprende con mis videotutoriales y demostraciones de proyectos reales sobre desarrollo de software, Cloud, APIs, Node-RED e IoT.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Demostración de Proyectos Reales</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Guías de Configuración & Código</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.youtube.com/@rafaelquevedo4412" 
+                       target="_blank" 
+                       class="w-full py-2.5 px-4 rounded-xl bg-red-600/20 border border-red-500/40 hover:bg-red-600/30 text-xs font-semibold text-red-300 hover:text-white transition flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-youtube text-red-500 text-base"></i>
+                        <span>Visitar Canal de YouTube</span>
+                    </a>
+                </div>
+
+                <!-- OPCIÓN 6 -->
+                <div class="glass-card rounded-2xl p-6 sm:p-8 hover:border-brand-500/50 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-emerald-400 text-xl group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-darkbg-900 border border-gray-800 text-brand-400 font-bold">Opción 6</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition-colors">Atención Personalizada</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            ¿Tienes requerimientos específicos o deseas asesoría técnica directa? Habla personalmente conmigo para evaluar la mejor solución tecnológica para tu negocio.
+                        </p>
+                        <ul class="space-y-2 text-xs text-gray-300 mb-6">
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Evaluación de Proyectos Personalizados</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-check text-brand-400"></i>
+                                <span>Asesoría Directa de Ingeniero</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/51908539454?text=Hola,%20quisiera%20una%20atenci%C3%B3n%20personalizada%20con%20Rafael%20Quevedo" 
+                       target="_blank" 
+                       class="w-full py-2.5 px-4 rounded-xl bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/30 text-xs font-semibold text-emerald-300 hover:text-white transition flex items-center justify-center space-x-2">
+                        <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                        <span>Hablar con Rafael</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PORTAFOLIO Y YOUTUBE -->
+    <section id="proyectos" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div class="space-y-3">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <span>Proyectos & Contenido</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                        Desarrollos y <span class="gradient-text">Videotutoriales</span>
+                    </h2>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <a href="https://www.youtube.com/@rafaelquevedo4412" target="_blank" class="inline-flex items-center space-x-2 text-sm font-semibold text-brand-400 hover:text-brand-300">
+                        <span>Ver más en YouTube</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- TARJETAS DE PROYECTOS DESTACADOS -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- PROYECTO 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-500/50 transition group">
+                    <div class="relative h-48 bg-darkbg-900 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkbg-900 to-transparent z-10"></div>
+                        <i class="fa-brands fa-whatsapp text-6xl text-emerald-500/30 group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-4 left-4 z-20 bg-brand-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">Serverless Bot</span>
+                    </div>
+                    <div class="p-6 relative z-20 space-y-3">
+                        <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Bot de WhatsApp para Detecpro</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Integración con Meta WhatsApp Cloud API v21.0 desplegada en Firebase Cloud Functions / Cloud Run con estado en Firestore.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Node.js</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Firebase</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">GCP Cloud Run</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-500/50 transition group">
+                    <div class="relative h-48 bg-darkbg-900 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkbg-900 to-transparent z-10"></div>
+                        <i class="fa-solid fa-diagram-project text-6xl text-brand-500/30 group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-4 left-4 z-20 bg-brand-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">IoT / Telemetría</span>
+                    </div>
+                    <div class="p-6 relative z-20 space-y-3">
+                        <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Sistema de Monitoreo Node-RED & ESP32</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Orquestación de sensores de campo en tiempo real mediante MQTT, Node-RED y tableros interactivos para gestión de datos.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">ESP32</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Node-RED</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">MQTT</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-500/50 transition group">
+                    <div class="relative h-48 bg-darkbg-900 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkbg-900 to-transparent z-10"></div>
+                        <i class="fa-solid fa-cash-register text-6xl text-brand-accent/30 group-hover:scale-110 transition-transform"></i>
+                        <span class="absolute top-4 left-4 z-20 bg-brand-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">ERP / SUNAT</span>
+                    </div>
+                    <div class="p-6 relative z-20 space-y-3">
+                        <h3 class="text-lg font-bold text-white group-hover:text-brand-400 transition-colors">Sistema de Facturación e Inventarios</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">
+                            Módulo comercial con control de stock en tiempo real, emisión de comprobantes electrónicos y reportes ejecutivos.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">Full Stack</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">PostgreSQL</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-gray-800 text-gray-300">API REST</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PERFIL PROFESIONAL / INSTRUCTOR -->
+    <section id="experiencia" class="py-20 bg-darkbg-800/30 border-t border-gray-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>Experiencia & Capacitación</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                        Trayectoria Técnica e <span class="gradient-text">Instrucción</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Además del desarrollo de proyectos tecnológicos en <strong class="text-white">Detecpro</strong>, cuento con trayectoria en la formación de profesionales técnicos e ingenieros en instituciones como <strong class="text-brand-400">SENATI</strong> y programas oficiales de <strong class="text-brand-400">AWS Academy</strong>.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-darkbg-900 border border-gray-800">
+                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Instructor Especializado en TI</h4>
+                                <p class="text-xs text-gray-400">Capacitación técnica en desarrollo web, software para microcontroladores, desarrollo móvil y Cloud.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-4 rounded-xl bg-darkbg-900 border border-gray-800">
+                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 text-brand-400 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fa-solid fa-cubes"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-bold text-white">Consultoría de Arquitectura de Software</h4>
+                                <p class="text-xs text-gray-400">Diseño de infraestructura en la nube, optimización de base de datos e integración de sistemas complejos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6">
+                    <div class="glass-card rounded-3xl p-8 border border-gray-800 space-y-6">
+                        <h3 class="text-xl font-bold text-white">¿Tienes una idea o proyecto en mente?</h3>
+                        <p class="text-sm text-gray-400">
+                            Puedes escribirme directamente para coordinar una reunión técnica o cotizar el desarrollo de tu aplicación o sistema.
+                        </p>
+
+                        <div class="p-4 rounded-2xl bg-darkbg-900/80 border border-gray-800 space-y-3">
+                            <div class="flex items-center space-x-3 text-gray-300 text-xs">
+                                <i class="fa-solid fa-phone text-brand-400"></i>
+                                <span>WhatsApp Directo: +51 908 539 454</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-gray-300 text-xs">
+                                <i class="fa-brands fa-youtube text-red-400"></i>
+                                <span>Canal: @rafaelquevedo4412</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-gray-300 text-xs">
+                                <i class="fa-solid fa-envelope text-brand-400"></i>
+                                <span>Contacto Comercial: Detecpro TI</span>
+                            </div>
+                        </div>
+
+                        <a href="https://wa.me/51908539454?text=Hola%20Rafael,%20quisiera%20agendar%20una%20consulta%20técnica%20sobre%20un%20proyecto" 
+                           target="_blank" 
+                           class="block w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-500 to-brand-accent hover:opacity-95 text-white font-semibold text-center text-sm shadow-lg glow-effect transition">
+                            Agendar Consulta Técnica
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto" class="bg-darkbg-900 border-t border-gray-800/80 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gray-800">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center text-white font-bold text-sm">
+                        D
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold text-white font-heading">DETECPRO</span>
+                        <span class="text-xs text-gray-400 block">Rafael Quevedo Mogollón</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-6 text-xl">
+                    <a href="https://wa.me/51908539454" target="_blank" class="text-gray-400 hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.youtube.com/@rafaelquevedo4412" target="_blank" class="text-gray-400 hover:text-red-400 transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://github.com/rafoqueve2015-del" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="pt-8 text-center md:flex md:items-center md:justify-between text-xs text-gray-500">
+                <p>&copy; <span id="year"></span> Detecpro. Todos los derechos reservados. Desarrollado por Rafael Quevedo M.</p>
+                <p class="mt-2 md:mt-0">Powered by Firebase & Google Cloud Serverless</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/51908539454?text=Hola,%20vi%20tu%20p%C3%A1gina%20web%20de%20Detecpro%20y%20me%20gustar%C3%ADa%20informaci%C3%B3n" 
+       target="_blank" 
+       aria-label="Contactar por WhatsApp"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-emerald-500 hover:bg-emerald-400 text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300 group glow-effect">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+        <span class="absolute right-16 bg-darkbg-800 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-gray-700 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-xl">
+            ¡Escríbenos al WhatsApp!
+        </span>
+    </a>
+
+    <!-- JAVASCRIPT SIMPLE -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 </html>
